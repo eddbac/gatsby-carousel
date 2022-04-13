@@ -17,7 +17,7 @@ const IndexPage = () => {
       <Carousel
         itemsToShow={3}
         infiniteLoop={true}
-        buttonCenter={{
+        buttonBottomLeft={{
           rightArrow: { backgroundColor: "blue" },
         }}
       >

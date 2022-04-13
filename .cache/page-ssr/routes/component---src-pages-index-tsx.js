@@ -2386,12 +2386,17 @@ const CarouselContainer = (0,styletron_react__WEBPACK_IMPORTED_MODULE_2__.styled
   display: "flex",
   flexDirection: "column"
 });
+const CarouselContentWrapper = (0,styletron_react__WEBPACK_IMPORTED_MODULE_2__.styled)("div", {
+  overflow: "hidden",
+  width: "100%",
+  height: "100%"
+});
 const CarouselWrapper = (0,styletron_react__WEBPACK_IMPORTED_MODULE_2__.styled)("div", {
   display: "flex",
   width: "100%",
   position: "relative"
 });
-const LeftArrow = (0,styletron_react__WEBPACK_IMPORTED_MODULE_2__.styled)('button', {
+const LeftArrow = (0,styletron_react__WEBPACK_IMPORTED_MODULE_2__.styled)("button", {
   position: "absolute",
   zIndex: 1,
   top: "50%",
@@ -2402,23 +2407,27 @@ const LeftArrow = (0,styletron_react__WEBPACK_IMPORTED_MODULE_2__.styled)('butto
   backgroundColor: "white",
   border: "1px solid #ddd",
   left: "24px"
-});
-const RightArrow = (0,styletron_react__WEBPACK_IMPORTED_MODULE_2__.styled)('button', {
-  // // position: "absolute",
-  // // zIndex: 1,
-  // top: "50%",
-  // transform: `translateY(-50%)`,
-  // width: "48px",
-  // height: "48px",
-  // borderRadius: "24px",
-  // backgroundColor: "white",
-  // border: "1px solid #ddd",
-  // right: "24px",
-  backgroundColor: 'red',
-  height: '10px'
+}); // const RightArrow = (children:React.ReactNode, ...ownStyle:Object) => {
+//  return (<button {...ownStyle}>
+//     {children}
+//   </button>)}
+
+const RightArrow = (0,styletron_react__WEBPACK_IMPORTED_MODULE_2__.styled)("button", {
+  position: "absolute",
+  zIndex: 1,
+  top: "50%",
+  transform: `translateY(-50%)`,
+  width: "48px",
+  height: "48px",
+  borderRadius: "24px",
+  backgroundColor: "white",
+  border: "1px solid #ddd",
+  right: "24px"
 });
 
 const Carousel = props => {
+  var _props$buttonCenter, _props$buttonCenter2, _props$buttonCenter3, _props$buttonCenter4, _props$buttonCenter5, _props$buttonCenter6;
+
   const {
     children,
     itemsToShow,
@@ -2529,14 +2538,10 @@ const Carousel = props => {
     return output;
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "carousel-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "carousel-wrapper"
-  }, (isRepeating || currentIndex > 0) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LeftArrow, {
-    onClick: prev
-  }, "<"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "carousel-content-wrapper",
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(CarouselContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(CarouselWrapper, null, !props.buttonBottomLeft || !props.buttonBottomRight ? (isRepeating || currentIndex > 0) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LeftArrow, {
+    onClick: prev,
+    style: (_props$buttonCenter = props.buttonCenter) === null || _props$buttonCenter === void 0 ? void 0 : _props$buttonCenter.leftArrow
+  }, "<") : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(CarouselContentWrapper, {
     onTouchStart: handleTouchStart,
     onTouchMove: handleTouchMove
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2546,8 +2551,21 @@ const Carousel = props => {
       transition: !transitionEnabled ? "none" : undefined
     },
     onTransitionEnd: () => handleTransitionEnd()
-  }, length > itemsToShow && isRepeating && renderExtraPrev(), children, length > itemsToShow && isRepeating && renderExtraNext())), (isRepeating || currentIndex < length - itemsToShow) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(RightArrow, {
-    onClick: next
+  }, length > itemsToShow && isRepeating && renderExtraPrev(), children, length > itemsToShow && isRepeating && renderExtraNext())), !props.buttonBottomLeft || !props.buttonBottomRight ? (isRepeating || currentIndex < length - itemsToShow) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(RightArrow, {
+    onClick: next,
+    style: (_props$buttonCenter2 = props.buttonCenter) === null || _props$buttonCenter2 === void 0 ? void 0 : _props$buttonCenter2.rightArrow
+  }, ">") : ""), props.buttonBottomRight && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LeftArrowBR, {
+    onClick: prev,
+    style: (_props$buttonCenter3 = props.buttonCenter) === null || _props$buttonCenter3 === void 0 ? void 0 : _props$buttonCenter3.leftArrow
+  }, "<"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(RightArrowBR, {
+    onClick: next,
+    style: (_props$buttonCenter4 = props.buttonCenter) === null || _props$buttonCenter4 === void 0 ? void 0 : _props$buttonCenter4.rightArrow
+  }, ">")), props.buttonBottomLeft && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LeftArrowBL, {
+    onClick: prev,
+    style: (_props$buttonCenter5 = props.buttonCenter) === null || _props$buttonCenter5 === void 0 ? void 0 : _props$buttonCenter5.leftArrow
+  }, "<"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(RightArrowBL, {
+    onClick: next,
+    style: (_props$buttonCenter6 = props.buttonCenter) === null || _props$buttonCenter6 === void 0 ? void 0 : _props$buttonCenter6.rightArrow
   }, ">")));
 };
 
@@ -2631,123 +2649,128 @@ const IndexPage = () => {
       marginLeft: "auto",
       marginRight: "auto",
       marginTop: 64,
-      height: '600px',
-      backgroundColor: 'beige'
+      height: "600px",
+      backgroundColor: "beige"
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_component_index__WEBPACK_IMPORTED_MODULE_2__.Carousel, {
     itemsToShow: 3,
-    infiniteLoop: true
+    infiniteLoop: true,
+    buttonCenter: {
+      rightArrow: {
+        backgroundColor: "blue"
+      }
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: '0 10px',
-      height: '600px',
-      backgroundColor: 'orange'
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "0 10px",
+      height: "600px",
+      backgroundColor: "orange"
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "https://via.placeholder.com/1600x300.png?text=FIRST",
     alt: "placeholder",
     style: {
       width: "100%",
-      height: '500px'
+      height: "500px"
     }
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: '0 10px',
-      height: '600px',
-      backgroundColor: 'orange'
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "0 10px",
+      height: "600px",
+      backgroundColor: "orange"
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "https://via.placeholder.com/1600x300",
     alt: "placeholder",
     style: {
       width: "100%",
-      height: '500px'
+      height: "500px"
     }
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: '0 10px',
-      height: '600px',
-      backgroundColor: 'orange'
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "0 10px",
+      height: "600px",
+      backgroundColor: "orange"
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "https://via.placeholder.com/1600x300",
     alt: "placeholder",
     style: {
       width: "100%",
-      height: '500px'
+      height: "500px"
     }
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: '0 10px',
-      height: '600px',
-      backgroundColor: 'orange'
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "0 10px",
+      height: "600px",
+      backgroundColor: "orange"
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "https://via.placeholder.com/1600x300",
     alt: "placeholder",
     style: {
       width: "100%",
-      height: '500px'
+      height: "500px"
     }
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: '0 10px',
-      height: '600px',
-      backgroundColor: 'orange'
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "0 10px",
+      height: "600px",
+      backgroundColor: "orange"
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "https://via.placeholder.com/782x90.png?text=This+Is+An+Example",
     alt: "placeholder",
     style: {
       width: "100%",
-      height: '500px'
+      height: "500px"
     }
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: '0 10px',
-      height: '600px',
-      backgroundColor: 'orange'
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "0 10px",
+      height: "600px",
+      backgroundColor: "orange"
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "https://via.placeholder.com/1600x300",
     alt: "placeholder",
     style: {
       width: "100%",
-      height: '500px'
+      height: "500px"
     }
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: '0 10px',
-      height: '600px',
-      backgroundColor: 'orange'
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "0 10px",
+      height: "600px",
+      backgroundColor: "orange"
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: "https://via.placeholder.com/1600x300.png?text=End",
     alt: "placeholder",
     style: {
       width: "100%",
-      height: '500px'
+      height: "500px"
     }
   })))));
 };
