@@ -1,59 +1,37 @@
 {
+  "name": "my-gatsby-site",
+  "version": "1.0.0",
   "private": true,
-  "workspaces": [
-    "docs-www",
-    "react-carousel"
+  "description": "my-gatsby-site",
+  "author": "eddbac",
+  "keywords": [
+    "gatsby"
   ],
-  "devDependencies": {
-    "@brainhubeu/license-auditor": "^1.0.30",
-    "@commitlint/cli": "^9.1.1",
-    "@commitlint/config-conventional": "^9.1.1",
-    "@commitlint/prompt": "^9.1.1",
-    "@semantic-release/commit-analyzer": "^8.0.1",
-    "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/git": "^9.0.0",
-    "@semantic-release/github": "^7.0.7",
-    "@semantic-release/release-notes-generator": "^9.0.1",
-    "@semantic-release/npm": "^7.0.5",
-    "commitizen": "^4.1.2",
-    "cypress": "^4.9.0",
-    "danger": "^10.2.1",
-    "eslint": "^6.8.0",
-    "eslint-config-brainhub": "^1.12.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-babel": "^5.3.1",
-    "eslint-plugin-cypress": "^2.10.3",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-watch": "^6.0.1",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5",
-    "semantic-release": "^17.1.1",
-    "start-server-and-test": "^1.11.0"
-  },
   "scripts": {
-    "preinstall": "node -e \"if (process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('Use yarn for installing: https://yarnpkg.com/en/docs/install')\"",
-    "start-demo": "yarn workspace react-carousel-docs develop",
-    "format": "prettier --write \"./**/*.{js,json}\"",
-    "lint": "eslint docs-www/ react-carousel/ cypress/ --color",
-    "build": "yarn workspace @brainhubeu/react-carousel build",
-    "test:e2e": "start-server-and-test start-demo http://localhost:8000 cypress:run",
-    "test:unit:coverage": "yarn workspace @brainhubeu/react-carousel test:coverage",
-    "test-dockerized:e2e": "docker-compose -f ./docker-compose.e2e.yml up --build --exit-code-from e2e-test",
-    "cypress:run": "yarn cypress run",
-    "commit": "yarn git-cz"
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn test:unit:coverage"
-    }
+  "dependencies": {
+    "@types/styletron-engine-atomic": "^1.1.1",
+    "@types/styletron-react": "^5.0.3",
+    "@types/styletron-standard": "^2.0.2",
+    "gatsby": "^4.11.2",
+    "gatsby-plugin-styletron": "^7.12.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-swipeable": "^6.2.1",
+    "styletron-engine-atomic": "^1.4.8",
+    "styletron-react": "^6.0.2"
   },
-  "lint-staged": {
-    "**/*.+(js|jsx)": [
-      "yarn format",
-      "yarn lint --fix"
-    ]
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
+    "@types/styletron-react": "^5.0.3",
+    "typescript": "^4.6.3"
   }
 }
