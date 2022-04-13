@@ -7,11 +7,11 @@ interface ICarousel {
   itemsToShow: 1 | 2 | 3 | 4 | 5; //max 5 items
   infiniteLoop: boolean;
   dots?: boolean;
-  buttonLeft?: {
+  buttonBottomLeft?: {
     rightArrow?: React.CSSProperties;
     leftArrow?: React.CSSProperties;
   };
-  buttonRight?: {
+  buttonBottomRight?: {
     rightArrow?: React.CSSProperties;
     leftArrow?: React.CSSProperties;
   };
@@ -69,6 +69,54 @@ const RightArrow = styled("button", {
   border: "1px solid #ddd",
   right: "24px",
 });
+
+const ArrowsLeft = styled('div', {
+  display: 'flex',
+  justifyContent: 'flex-end'
+});
+
+const ArrowsRight = styled('div', {
+  display: 'flex',
+  justifyContent: 'flex-start'
+});
+
+const LeftArrowBL = styled("button", {
+  width: "48px",
+  height: "48px",
+  borderRadius: "24px",
+  backgroundColor: "white",
+  border: "1px solid #ddd",
+  left: "24px",
+});
+
+const RightArrowBL = styled("button", {
+  width: "48px",
+  height: "48px",
+  borderRadius: "24px",
+  backgroundColor: "white",
+  border: "1px solid #ddd",
+  right: "24px",
+});
+
+const LeftArrowBR = styled("button", {
+  width: "48px",
+  height: "48px",
+  borderRadius: "24px",
+  backgroundColor: "white",
+  border: "1px solid #ddd",
+  left: "24px",
+});
+
+const RightArrowBR = styled("button", {
+  width: "48px",
+  height: "48px",
+  borderRadius: "24px",
+  backgroundColor: "white",
+  border: "1px solid #ddd",
+  right: "24px",
+});
+
+
 
 const Carousel = (props: ICarousel) => {
   const { children, itemsToShow, infiniteLoop } = props;
@@ -172,7 +220,7 @@ const Carousel = (props: ICarousel) => {
   return (
     <CarouselContainer>
       <CarouselWrapper>
-        {!props.buttonLeft || !props.buttonRight
+        {!props.buttonBottomLeft && !props.buttonBottomRight
           ? (isRepeating || currentIndex > 0) && (
               <LeftArrow onClick={prev} style={props.buttonCenter?.leftArrow}>
                 &lt;
@@ -196,7 +244,7 @@ const Carousel = (props: ICarousel) => {
             {length > itemsToShow && isRepeating && renderExtraNext()}
           </div>
         </CarouselContentWrapper>
-        {!props.buttonLeft || !props.buttonRight
+        {!props.buttonBottomLeft && !props.buttonBottomRight
           ? (isRepeating || currentIndex < length - itemsToShow) && (
               <RightArrow onClick={next} style={props.buttonCenter?.rightArrow}>
                 &gt;
@@ -204,6 +252,26 @@ const Carousel = (props: ICarousel) => {
             )
           : ""}
       </CarouselWrapper>
+      {props.buttonBottomRight && (
+        <ArrowsRight>
+          <LeftArrowBR onClick={prev} style={props.buttonBottomRight?.leftArrow}>
+            &lt;
+          </LeftArrowBR>
+          <RightArrowBR onClick={next} style={props.buttonBottomRight?.rightArrow}>
+            &gt;
+          </RightArrowBR>
+        </ArrowsRight>
+      )}
+      {props.buttonBottomLeft && (
+        <ArrowsLeft>
+          <LeftArrowBL onClick={prev} style={props.buttonBottomLeft?.leftArrow}>
+            &lt;
+          </LeftArrowBL>
+          <RightArrowBL onClick={next} style={props.buttonBottomLeft?.rightArrow}>
+            &gt;
+          </RightArrowBL>
+        </ArrowsLeft>
+      )}
     </CarouselContainer>
   );
 };
